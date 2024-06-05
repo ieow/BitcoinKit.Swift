@@ -6,7 +6,7 @@ import HsToolKit
 
 class Manager {
     static let shared = Manager()
-    private static let syncModes: [BitcoinCore.SyncMode] = [.full, .api, .newWallet]
+    private static let syncModes: [BitcoinCore.SyncMode] = [.full, .api, ]
 
     private let restoreDataKey = "restore_data"
     private let syncModeKey = "syncMode"
@@ -29,6 +29,15 @@ class Manager {
 
         DispatchQueue.global(qos: .userInitiated).async {
             self.initAdapter(restoreData: restoreData, syncMode: Manager.syncModes[syncModeIndex])
+        }
+    }
+    
+    func login(apiSigner: ISigner, syncModeIndex: Int) {
+        save(syncModeIndex: syncModeIndex)
+        clearKits()
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.initAdapter( apiSigner: apiSigner, syncMode: Manager.syncModes[syncModeIndex])
         }
     }
 
@@ -55,6 +64,15 @@ class Manager {
 
         adapterSubject.send()
     }
+    
+    private func initAdapter(apiSigner: ISigner, syncMode: BitcoinCore.SyncMode) {
+        let configuration = Configuration.shared
+        let logger = Logger(minLogLevel: Configuration.shared.minLogLevel)
+
+        adapter = BitcoinAdapter(apiSigner: apiSigner, purpose: configuration.purpose, testMode: configuration.testNet, syncMode: syncMode, logger: logger )
+        adapterSubject.send()
+    }
+
 
     var savedRestoreData: String? {
         UserDefaults.standard.value(forKey: restoreDataKey) as? String

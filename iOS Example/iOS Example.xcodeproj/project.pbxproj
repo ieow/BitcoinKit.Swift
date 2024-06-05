@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28A0C2972B8F29E20005280C /* mpc-core-kit-swift in Frameworks */ = {isa = PBXBuildFile; productRef = 28A0C2962B8F29E20005280C /* mpc-core-kit-swift */; };
 		2FA5D47CFAEB8DB143F27645 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5DACF4DE83AC5FE512D28 /* Extensions.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		6BC11A5628EEAF0D0001FDF1 /* BitcoinKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6BC11A5528EEAF0D0001FDF1 /* BitcoinKit */; };
@@ -30,6 +31,13 @@
 		D36AAAA823A2125E0065B32B /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAA9223A2125D0065B32B /* Manager.swift */; };
 		D36AAAAA23A2125E0065B32B /* TransactionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAA9423A2125D0065B32B /* TransactionRecord.swift */; };
 		D36AAAAC23A212E30065B32B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36AAAAB23A212E30065B32B /* LaunchScreen.xib */; };
+		F08DBDF22B830EE600B2122A /* mpc-core-kit-swift in Frameworks */ = {isa = PBXBuildFile; productRef = F08DBDF12B830EE600B2122A /* mpc-core-kit-swift */; };
+		F08DBDF72B8449FB00B2122A /* MPCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08DBDF62B8449FB00B2122A /* MPCController.swift */; };
+		F08DBE032B84697200B2122A /* MPCController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F08DBE022B84697200B2122A /* MPCController.xib */; };
+		F08DBE052B84A18E00B2122A /* MPCLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F08DBE042B84A18E00B2122A /* MPCLoginController.xib */; };
+		F08DBE082B84A1B300B2122A /* MPCLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08DBE072B84A1B300B2122A /* MPCLoginController.swift */; };
+		F0CBFC592B592CAF00B38672 /* MPCSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBFC582B592CAE00B38672 /* MPCSigner.swift */; };
+		F0CBFC602B5A1B5400B38672 /* HdApiSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBFC5F2B5A1B5400B38672 /* HdApiSigner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +65,12 @@
 		D36AAA9223A2125D0065B32B /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		D36AAA9423A2125D0065B32B /* TransactionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionRecord.swift; sourceTree = "<group>"; };
 		D36AAAAB23A212E30065B32B /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		F08DBDF62B8449FB00B2122A /* MPCController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCController.swift; sourceTree = "<group>"; };
+		F08DBE022B84697200B2122A /* MPCController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPCController.xib; sourceTree = "<group>"; };
+		F08DBE042B84A18E00B2122A /* MPCLoginController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPCLoginController.xib; sourceTree = "<group>"; };
+		F08DBE072B84A1B300B2122A /* MPCLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCLoginController.swift; sourceTree = "<group>"; };
+		F0CBFC582B592CAE00B38672 /* MPCSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCSigner.swift; sourceTree = "<group>"; };
+		F0CBFC5F2B5A1B5400B38672 /* HdApiSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HdApiSigner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28A0C2972B8F29E20005280C /* mpc-core-kit-swift in Frameworks */,
+				F08DBDF22B830EE600B2122A /* mpc-core-kit-swift in Frameworks */,
 				6BC11A5628EEAF0D0001FDF1 /* BitcoinKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,16 +130,20 @@
 		D36AAA8023A2125D0065B32B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D36AAA8123A2125D0065B32B /* SendController.xib */,
 				D36AAA8223A2125D0065B32B /* BalanceController.swift */,
 				D36AAA8323A2125D0065B32B /* Cells */,
 				D36AAA8823A2125D0065B32B /* ReceiveController.swift */,
-				D36AAA8923A2125D0065B32B /* WordsController.swift */,
+				D36AAA8E23A2125D0065B32B /* ReceiveController.xib */,
 				D36AAA8A23A2125D0065B32B /* MainController.swift */,
+				D36AAA8923A2125D0065B32B /* WordsController.swift */,
 				D36AAA8B23A2125D0065B32B /* WordsController.xib */,
 				D36AAA8C23A2125D0065B32B /* TransactionsController.swift */,
 				D36AAA8D23A2125D0065B32B /* SendController.swift */,
-				D36AAA8E23A2125D0065B32B /* ReceiveController.xib */,
+				D36AAA8123A2125D0065B32B /* SendController.xib */,
+				F08DBDF62B8449FB00B2122A /* MPCController.swift */,
+				F08DBE022B84697200B2122A /* MPCController.xib */,
+				F08DBE072B84A1B300B2122A /* MPCLoginController.swift */,
+				F08DBE042B84A18E00B2122A /* MPCLoginController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -145,6 +165,8 @@
 				D36AAA9223A2125D0065B32B /* Manager.swift */,
 				D36AAA9423A2125D0065B32B /* TransactionRecord.swift */,
 				2FA5DACF4DE83AC5FE512D28 /* Extensions.swift */,
+				F0CBFC582B592CAE00B38672 /* MPCSigner.swift */,
+				F0CBFC5F2B5A1B5400B38672 /* HdApiSigner.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -167,6 +189,8 @@
 			name = "iOS Example";
 			packageProductDependencies = (
 				6BC11A5528EEAF0D0001FDF1 /* BitcoinKit */,
+				F08DBDF12B830EE600B2122A /* mpc-core-kit-swift */,
+				28A0C2962B8F29E20005280C /* mpc-core-kit-swift */,
 			);
 			productName = BitcoinKit;
 			productReference = 6BE77D6F28F687F400BD03EF /* BitcoinKit Demo.app */;
@@ -199,7 +223,7 @@
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			packageReferences = (
-				6B7C7E6228EC00770053F11A /* XCRemoteSwiftPackageReference "Cuckoo" */,
+				28A0C2952B8F29E20005280C /* XCRemoteSwiftPackageReference "mpc-core-kit-swift" */,
 			);
 			productRefGroup = 607FACC71AFB9204008FA782;
 			projectDirPath = "";
@@ -218,9 +242,11 @@
 				D36AAA9923A2125E0065B32B /* SendController.xib in Resources */,
 				D36AAA9E23A2125E0065B32B /* BalanceCell.xib in Resources */,
 				D36AAAA223A2125E0065B32B /* WordsController.xib in Resources */,
+				F08DBE052B84A18E00B2122A /* MPCLoginController.xib in Resources */,
 				D36AAAAC23A212E30065B32B /* LaunchScreen.xib in Resources */,
 				D36AAAA623A2125E0065B32B /* Assets.xcassets in Resources */,
 				D36AAA9B23A2125E0065B32B /* TransactionCell.xib in Resources */,
+				F08DBE032B84697200B2122A /* MPCController.xib in Resources */,
 				D36AAAA523A2125E0065B32B /* ReceiveController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,14 +260,18 @@
 			files = (
 				D36AAAA323A2125E0065B32B /* TransactionsController.swift in Sources */,
 				D36AAAAA23A2125E0065B32B /* TransactionRecord.swift in Sources */,
+				F0CBFC592B592CAF00B38672 /* MPCSigner.swift in Sources */,
 				D36AAA9F23A2125E0065B32B /* ReceiveController.swift in Sources */,
 				D36AAAA723A2125E0065B32B /* Configuration.swift in Sources */,
 				D36AAAA023A2125E0065B32B /* WordsController.swift in Sources */,
 				D36AAAA823A2125E0065B32B /* Manager.swift in Sources */,
 				D36AAA9C23A2125E0065B32B /* TransactionCell.swift in Sources */,
+				F08DBDF72B8449FB00B2122A /* MPCController.swift in Sources */,
 				6BC11A5828EEB0DD0001FDF1 /* BitcoinAdapter.swift in Sources */,
 				D36AAAA423A2125E0065B32B /* SendController.swift in Sources */,
+				F0CBFC602B5A1B5400B38672 /* HdApiSigner.swift in Sources */,
 				D36AAA9D23A2125E0065B32B /* BalanceCell.swift in Sources */,
+				F08DBE082B84A1B300B2122A /* MPCLoginController.swift in Sources */,
 				D36AAA9823A2125E0065B32B /* BaseAdapter.swift in Sources */,
 				D36AAA9A23A2125E0065B32B /* BalanceController.swift in Sources */,
 				D36AAAA123A2125E0065B32B /* MainController.swift in Sources */,
@@ -300,7 +330,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -350,7 +380,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -419,20 +449,29 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6B7C7E6228EC00770053F11A /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
+		28A0C2952B8F29E20005280C /* XCRemoteSwiftPackageReference "mpc-core-kit-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Brightify/Cuckoo";
+			repositoryURL = "https://github.com/tkey/mpc-core-kit-swift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = "feat/update-interface";
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		28A0C2962B8F29E20005280C /* mpc-core-kit-swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 28A0C2952B8F29E20005280C /* XCRemoteSwiftPackageReference "mpc-core-kit-swift" */;
+			productName = "mpc-core-kit-swift";
+		};
 		6BC11A5528EEAF0D0001FDF1 /* BitcoinKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BitcoinKit;
+		};
+		F08DBDF12B830EE600B2122A /* mpc-core-kit-swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "mpc-core-kit-swift";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

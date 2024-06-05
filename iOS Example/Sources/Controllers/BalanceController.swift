@@ -47,10 +47,12 @@ class BalanceController: UITableViewController {
 
     @objc func logout() {
         Manager.shared.logout()
-
+        Task {
+            try await mpcCoreKitInstance.logout()
+        }
         if let window = UIApplication.shared.windows.filter(\.isKeyWindow).first {
             UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
-                window.rootViewController = UINavigationController(rootViewController: WordsController())
+                window.rootViewController = UINavigationController(rootViewController: MPCLoginController())
             })
         }
     }

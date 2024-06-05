@@ -57,6 +57,7 @@ class ReceiveController: UIViewController {
     }
 
     func updateAddress() {
+        print(currentAdapter?.receiveAddress())
         addressLabel?.text = "  \(currentAdapter?.receiveAddress() ?? "")  "
     }
 

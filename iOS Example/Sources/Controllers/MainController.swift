@@ -20,6 +20,10 @@ class MainController: UITabBarController {
         receiveNavigation.tabBarItem.title = "Receive"
         receiveNavigation.tabBarItem.image = UIImage(named: "Receive Tab Bar Icon")
 
-        viewControllers = [balanceNavigation, transactionsNavigation, sendNavigation, receiveNavigation]
+        let mpcNavigation = UINavigationController(rootViewController: MPCController())
+        mpcNavigation.tabBarItem.title = "MPC"
+        mpcNavigation.tabBarItem.image = UIImage(named: "Balance Tab Bar Icon")
+        
+        viewControllers = [balanceNavigation, transactionsNavigation, sendNavigation, receiveNavigation, mpcNavigation]
     }
 }

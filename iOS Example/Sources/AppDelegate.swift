@@ -1,14 +1,14 @@
 import UIKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+    class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let controller = Manager.shared.savedRestoreData == nil ? UINavigationController(rootViewController: WordsController()) : MainController()
-
+        let controller = Manager.shared.savedRestoreData == nil ? UINavigationController(rootViewController: MPCLoginController()) : MainController()
+//        let controller = Manager.shared.savedRestoreData == nil ? UINavigationController(rootViewController: WordsController()) : MainController()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .white

@@ -28,7 +28,16 @@ class BitcoinAdapter: BaseAdapter {
         super.init(name: "Bitcoin", coinCode: "BTC", abstractKit: bitcoinKit)
         bitcoinKit.delegate = self
     }
-
+    
+    init(apiSigner: ISigner, purpose: Purpose, testMode: Bool, syncMode: BitcoinCore.SyncMode, logger: Logger) {
+        let networkType: Kit.NetworkType = testMode ? .testNet : .mainNet
+        
+        bitcoinKit = try! Kit(apiSigner: apiSigner, purpose: purpose, walletId: "walletId", syncMode: syncMode, networkType: networkType, confirmationsThreshold: 1, logger: logger.scoped(with: "BitcoinKit"))
+        
+        super.init(name: "Bitcoin", coinCode: "BTC", abstractKit: bitcoinKit)
+        bitcoinKit.delegate = self
+    }
+    
     class func clear() {
         try? Kit.clear()
     }

@@ -32,7 +32,7 @@ public class Kit: AbstractKit {
         }
     }
 
-    private init(extendedKey: HDExtendedKey?, watchAddressPublicKey: WatchAddressPublicKey?, purpose: Purpose, walletId: String, syncMode: BitcoinCore.SyncMode = .api, networkType: NetworkType = .mainNet, confirmationsThreshold: Int = 6, logger: Logger?) throws {
+    private init(extendedKey: HDExtendedKey?, apiSigner: ISigner? = nil, watchAddressPublicKey: WatchAddressPublicKey?, purpose: Purpose, walletId: String, syncMode: BitcoinCore.SyncMode = .api, networkType: NetworkType = .mainNet, confirmationsThreshold: Int = 6, logger: Logger?) throws {
         let network = networkType.network
         let logger = logger ?? Logger(minLogLevel: .verbose)
         let databaseFilePath = try DirectoryHelper.directoryURL(for: Kit.name).appendingPathComponent(Kit.databaseFileName(walletId: walletId, networkType: networkType, purpose: purpose, syncMode: syncMode)).path
@@ -57,7 +57,7 @@ public class Kit: AbstractKit {
                 apiTransactionProvider = BlockchainComApi(url: "https://blockchain.info", blockHashFetcher: hsBlockHashFetcher, logger: logger)
             }
         case .testNet:
-            apiTransactionProvider = BCoinApi(url: "https://btc-testnet.horizontalsystems.xyz/api", logger: logger)
+            apiTransactionProvider = MempoolSpaceApi(url: "https://mempool.space/testnet/api", logger: logger)
         case .regTest:
             apiTransactionProvider = nil
         }
@@ -107,6 +107,7 @@ public class Kit: AbstractKit {
             .add(plugin: hodler)
             .set(purpose: purpose)
             .set(extendedKey: extendedKey)
+            .set(apiSigner: apiSigner)
             .set(watchAddressPublicKey: watchAddressPublicKey)
             .build()
 
@@ -178,6 +179,43 @@ public class Kit: AbstractKit {
         let publicKey = try WatchAddressPublicKey(data: address.lockingScriptPayload, scriptType: address.scriptType)
 
         try self.init(extendedKey: nil, watchAddressPublicKey: publicKey,
+                      purpose: purpose,
+                      walletId: walletId,
+                      syncMode: syncMode,
+                      networkType: networkType,
+                      confirmationsThreshold: confirmationsThreshold,
+                      logger: logger)
+
+        bitcoinCore.prepend(addressConverter: bech32AddressConverter)
+
+        switch purpose {
+        case .bip44:
+            bitcoinCore.add(restoreKeyConverter: Bip44RestoreKeyConverter(addressConverter: base58AddressConverter))
+        case .bip49:
+            bitcoinCore.add(restoreKeyConverter: Bip49RestoreKeyConverter(addressConverter: base58AddressConverter))
+        case .bip84:
+            bitcoinCore.add(restoreKeyConverter: Bip84RestoreKeyConverter(addressConverter: bech32AddressConverter))
+        case .bip86:
+            bitcoinCore.add(restoreKeyConverter: Bip86RestoreKeyConverter(addressConverter: bech32AddressConverter))
+        }
+    }
+    
+    
+    public convenience init( apiSigner: ISigner, purpose: Purpose, walletId: String, syncMode: BitcoinCore.SyncMode = .api, networkType: NetworkType = .mainNet, confirmationsThreshold: Int = 6, logger: Logger?) throws {
+        let network = networkType.network
+        let scriptConverter = ScriptConverter()
+        let bech32AddressConverter = SegWitBech32AddressConverter(prefix: network.bech32PrefixPattern, scriptConverter: scriptConverter)
+        let base58AddressConverter = Base58AddressConverter(addressVersion: network.pubKeyHash, addressScriptVersion: network.scriptHash)
+        let parserChain = AddressConverterChain()
+        parserChain.prepend(addressConverter: base58AddressConverter)
+        parserChain.prepend(addressConverter: bech32AddressConverter)
+
+//        let address = try parserChain.convert(address: watchAddress)
+//        let publicKey = try WatchAddressPublicKey(data: address.lockingScriptPayload, scriptType: address.scriptType)
+
+        try self.init(extendedKey: nil, apiSigner: apiSigner,
+                      watchAddressPublicKey: nil,
+//                      watchAddressPublicKey: publicKey,
                       purpose: purpose,
                       walletId: walletId,
                       syncMode: syncMode,
